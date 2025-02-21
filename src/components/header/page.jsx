@@ -14,7 +14,7 @@ export default function Header({ title = "Untitled" }) {
             <div className="border-b bg-white shadow-sm">
       <div className="px-2 py-3 flex items-center justify-between mt-1">
         <div className="flex items-center">
-          <Book size={24} color="#da0707" strokeWidth={2.55}  className="text-red-500 mr-2" />
+          <Book size={23} color="#da0707" strokeWidth={2.25}  className="text-red-500 mr-2" />
           <h1 className="text-xl font-semibold text-gray-800">{title}</h1>
         </div>
 
