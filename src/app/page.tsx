@@ -1,5 +1,5 @@
 // app/page.jsx (Server Component)
-import Footer from '@/components/footer/page';
+
 import SpreadsheetManagerWrapper from '@/components/wrapper/page'
 export default function HomePage() {
   return (
