@@ -4,13 +4,13 @@ import { useState } from "react";
 
 export default function NewSheetsTable({ activeSpreadsheet, onAddColumn, onRenameColumn, onDeleteColumn, onAddRow, onUpdateRow, onDeleteRow }) {
   const [editableCell, setEditableCell] = useState({ row: null, col: null });
-  const [editableHeader, setEditableHeader] = useState(null); // Track which header is being edited
+  const [editableHeader, setEditableHeader] = useState(null); 
   const [newColumnName, setNewColumnName] = useState("");
   const [tempValue, setTempValue] = useState("");
-  const [tempHeaderValue, setTempHeaderValue] = useState(""); // Temporary value for editing headers
+  const [tempHeaderValue, setTempHeaderValue] = useState(""); 
 
   if (!activeSpreadsheet) {
-    return <div>No active spreadsheet. Create a new one or select an existing spreadsheet.</div>;
+    return <div className="text-black">No active spreadsheet. Create a new one or select an existing spreadsheet.</div>;
   }
 
   const handleCellClick = (rowIndex, colName, value) => {
@@ -35,19 +35,19 @@ export default function NewSheetsTable({ activeSpreadsheet, onAddColumn, onRenam
   };
 
   const handleHeaderClick = (headerIndex, headerName) => {
-    setEditableHeader(headerIndex); // Set the header being edited
-    setTempHeaderValue(headerName); // Set the current header name for editing
+    setEditableHeader(headerIndex);
+    setTempHeaderValue(headerName); 
   };
 
   const handleHeaderChange = (e) => {
-    setTempHeaderValue(e.target.value); // Update the temporary header value
+    setTempHeaderValue(e.target.value); 
   };
 
   const handleHeaderBlur = (headerIndex) => {
     if (tempHeaderValue.trim()) {
-      onRenameColumn(activeSpreadsheet.id, activeSpreadsheet.headers[headerIndex], tempHeaderValue); // Update the header name
+      onRenameColumn(activeSpreadsheet.id, activeSpreadsheet.headers[headerIndex], tempHeaderValue); 
     }
-    setEditableHeader(null); // Stop editing
+    setEditableHeader(null); 
   };
 
   const handleDeleteColumn = (headerName) => {
@@ -58,7 +58,7 @@ export default function NewSheetsTable({ activeSpreadsheet, onAddColumn, onRenam
 
   const handleAddRow = () => {
     const newRow = activeSpreadsheet.headers.reduce((row, header) => {
-      row[header] = ""; // Initialize all columns to empty strings
+      row[header] = ""; 
       return row;
     }, { id: activeSpreadsheet.data.length + 1 });
     onAddRow(activeSpreadsheet.id, newRow);
@@ -91,7 +91,7 @@ export default function NewSheetsTable({ activeSpreadsheet, onAddColumn, onRenam
                     {editableHeader === index ? (
                       <input
                         type="text"
-                        value={tempHeaderValue}
+                        value={tempHeaderValue ?? ""}    
                         onChange={handleHeaderChange}
                         onBlur={() => handleHeaderBlur(index)}
                         autoFocus
@@ -132,7 +132,7 @@ export default function NewSheetsTable({ activeSpreadsheet, onAddColumn, onRenam
                     {editableCell.row === rowIndex && editableCell.col === header ? (
                       <input
                         type="text"
-                        value={tempValue}
+                        value={tempValue ?? ""} 
                         onChange={(e) => handleInputChange(e.target.value)}
                         onBlur={() => handleInputBlur(rowIndex, header)}
                         autoFocus
@@ -152,7 +152,7 @@ export default function NewSheetsTable({ activeSpreadsheet, onAddColumn, onRenam
           </tbody>
         </table>
 
-        {/* Add Row Button */}
+      
         <div className="mt-2">
           <button className="py-2.5 px-4 border bg-gray-100 text-black flex items-center justify-center w-auto" onClick={handleAddRow}>
             <Plus size={15} className="mr-2" /> <span>Add Row</span>
@@ -160,11 +160,13 @@ export default function NewSheetsTable({ activeSpreadsheet, onAddColumn, onRenam
         </div>
       </div>
 
-      {/* Add Column Input and Button */}
-      <div className="flex flex-col mt-2 md:mt-0">
+    
+    {/* button for adding column */}
+    
+    <div className="flex flex-col mt-2 md:mt-0">
         <input
           type="text"
-          value={newColumnName}
+          value={newColumnName ?? ""}
           onChange={(e) => setNewColumnName(e.target.value)}
           placeholder="New Column Name"
           className="py-2.5 px-4 border bg-gray-100 text-black mb-0"

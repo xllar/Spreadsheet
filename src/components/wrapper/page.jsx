@@ -1,9 +1,7 @@
-"use client"; // Mark this as a Client Component
-
+'use client'
 import Sidebar from '@/components/sidebar/page';
 import Header from '@/components/header/page';
 import NewSheetsTable from '@/components/newsheets/page';
-import CompaniesTable from '@/components/Table/page'; // Add this import
 import useSpreadsheetManager from "@/components/sheetsManager/page";
 
 export default function SpreadsheetManagerWrapper() {
@@ -13,7 +11,7 @@ export default function SpreadsheetManagerWrapper() {
     createSpreadsheet,
     deleteSpreadsheet,
     switchSpreadsheet,
-    renameSpreadsheet, // This is the function to rename a sheet
+    renameSpreadsheet, 
     addHeader,
     renameHeader,
     deleteHeader,
@@ -30,7 +28,7 @@ export default function SpreadsheetManagerWrapper() {
         onCreateSpreadsheet={createSpreadsheet}
         onDeleteSpreadsheet={() => deleteSpreadsheet(activeSpreadsheet?.id)}
         onSwitchSpreadsheet={switchSpreadsheet}
-        onRenameSpreadsheet={renameSpreadsheet} // Pass the rename function here
+        onRenameSpreadsheet={renameSpreadsheet} 
       />
       <div className="flex flex-col flex-1 w-full">
         <Header title={activeSpreadsheet?.name || "Untitled"} />
@@ -49,5 +47,5 @@ export default function SpreadsheetManagerWrapper() {
         )}
       </div>
     </>
-  );
+  ); 
 }
